@@ -54,7 +54,7 @@ class CryptographyToolkitSTRONGERTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         cryptographyToolkit = new CryptographyToolkit(dataBuilder.resourceFromParametersAndAutoGenerate());
         String result = cryptographyToolkit.encryptAesCbc256STRONGER("This is a secret message, please don't break it !");
-        assertEquals(140, result.length());
+        assertEquals(148, result.length());
     }
 
     @Test
@@ -62,7 +62,7 @@ class CryptographyToolkitSTRONGERTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         cryptographyToolkit = new CryptographyToolkit(dataBuilder.resourceFromParametersAndAutoGenerate());
         String result = cryptographyToolkit.decryptAesCbc256STRONGER(
-                "9DC314F85d0I8HrM/5+kYUOafFoDNxQGtdIdQnSZlLbERWWL0IK5srk2dYCzU:EQ:/x0t0x00001p#04504511Hmg0/oKQJL8aUjWAQl89uRdYGP3WghfSIfvlEB4SvhP6K4WAIjk0wd");
+                "25544C61m0nYPvFyBEU2K9idF5gSnTdMZQxZY4ryUW0vm2NcMMUlpg87e9rxYOjB4MDAxMDE6/x0t0x00001p#84EB4B4ET51PCA3maiFPmv+HfHX5aIjHuWok3kZ5LYvLXFyF139k1DTOYoAzYz");
         assertEquals("This is a secret message, please don't break it !", result);
     }
 
@@ -105,7 +105,7 @@ class CryptographyToolkitSTRONGERTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         cryptographyToolkit = new CryptographyToolkit(dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate());
         String result = cryptographyToolkit.encryptAesCbc256STRONGER("This is a secret message, please don't break it !");
-        assertEquals(140, result.length());
+        assertEquals(148, result.length());
     }
 
     @Test
@@ -113,7 +113,7 @@ class CryptographyToolkitSTRONGERTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         cryptographyToolkit = new CryptographyToolkit(dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate());
         String result = cryptographyToolkit.decryptAesCbc256STRONGER(
-                "292C415BeBB1Tx053xLmqPCPCmQ8hyPmUu7aScuWb0W0fstwna6o2tOB9CjTo:EQ:/x0t0x00001p#CFBA406E47Z29st+nvb4Cek9smqzyzhp+E5cAkBb02nFSxto63fppdCsEh6i2j");
+                "B5EFC6FFnGrQmGyMwXZGdsUqZ61F0ycvAjOeL05/21EKSqDQq++MNLeIn9lqkOjB4MDAxMDE6/x0t0x00001p#D8374853KYTQHqlAIh3BkBgX33h1u4rXa8Ll4Jc9xpktrrU1+EqpRCQuP5dICn");
         assertEquals("This is a secret message, please don't break it !", result);
     }
 
@@ -122,14 +122,14 @@ class CryptographyToolkitSTRONGERTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         cryptographyToolkit = new CryptographyToolkit(dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate());
         String result = cryptographyToolkit.encryptAesCbc256STRONGER("secret message");
-        assertEquals(76, result.length());
+        assertEquals(84, result.length());
     }
 
     @Test
     public void decryptAES256CBC_APPLICATION_PROPERTIES_AUTO_GENERATE_IV_2_Test() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         cryptographyToolkit = new CryptographyToolkit(dataBuilder.resourceFromParametersAndAutoGenerate());
-        String result = cryptographyToolkit.decryptAesCbc256STRONGER("94EF2A5FiYcZ31u4rsn/iFDfaD/pM:EQ:/x0t0x00001p#67984EE4q9sEHnHU2/aHLfLtUuMWW7");
+        String result = cryptographyToolkit.decryptAesCbc256STRONGER("F52803F4EJZG43m9SQnlGMsmuthbsOjB4MDAxMDE6/x0t0x00001p#12AE473B6lvRToWC03LWsD86vlq8Lc");
         assertEquals("secret message", result);
     }
 

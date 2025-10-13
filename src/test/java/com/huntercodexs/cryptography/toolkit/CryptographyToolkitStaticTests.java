@@ -54,7 +54,7 @@ class CryptographyToolkitStaticTests {
         String result = CryptographyToolkit.encryptAesCbc256StaticSTRONGER(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
                 "This is a secret message, please don't break it !");
-        assertEquals(140, result.length());
+        assertEquals(148, result.length());
     }
 
     @Test
@@ -62,8 +62,7 @@ class CryptographyToolkitStaticTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = CryptographyToolkit.decryptAesCbc256StaticSTRONGER(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
-
-                "9DC314F85d0I8HrM/5+kYUOafFoDNxQGtdIdQnSZlLbERWWL0IK5srk2dYCzU:EQ:/x0t0x00001p#04504511Hmg0/oKQJL8aUjWAQl89uRdYGP3WghfSIfvlEB4SvhP6K4WAIjk0wd");
+                "B92740F33TqkR/aGtPP4/7+pZDlX3vU/XmEbw3hQ1Uuv0FH6ZmIO0HXKEALs8OjB4MDAxMDE6/x0t0x00001p#FAEE4BCCnR47qBSgJBo961ibQ2S/aKXE3HY5MThrjm7e2uzZ/4Dhd7+m9PQ5Xi");
         assertEquals("This is a secret message, please don't break it !", result);
     }
 
@@ -106,7 +105,7 @@ class CryptographyToolkitStaticTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = CryptographyToolkit.encryptAesCbc256StaticSTRONGER(
                 dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate(),"This is a secret message, please don't break it !");
-        assertEquals(140, result.length());
+        assertEquals(148, result.length());
     }
 
     @Test
@@ -114,7 +113,7 @@ class CryptographyToolkitStaticTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = CryptographyToolkit.decryptAesCbc256StaticSTRONGER(
                 dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate(),
-                "292C415BeBB1Tx053xLmqPCPCmQ8hyPmUu7aScuWb0W0fstwna6o2tOB9CjTo:EQ:/x0t0x00001p#CFBA406E47Z29st+nvb4Cek9smqzyzhp+E5cAkBb02nFSxto63fppdCsEh6i2j");
+                "2362723DR0qVkaPiE7buDfxjB7f3i528IfQ8d6HbvPwB+Mw8hOj4D+PFtHRisOjB4MDAxMDE6/x0t0x00001p#45B046EFMcBRd9nDXagyVumfvARzDZOe1i3HhEQZc9YccQHLV2KGeYgoUAjcZP");
         assertEquals("This is a secret message, please don't break it !", result);
     }
 
@@ -123,7 +122,7 @@ class CryptographyToolkitStaticTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = CryptographyToolkit.encryptAesCbc256StaticSTRONGER(
                 dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate(),"secret message");
-        assertEquals(76, result.length());
+        assertEquals(84, result.length());
     }
 
     @Test
@@ -131,7 +130,7 @@ class CryptographyToolkitStaticTests {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = CryptographyToolkit.decryptAesCbc256StaticSTRONGER(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
-                "94EF2A5FiYcZ31u4rsn/iFDfaD/pM:EQ:/x0t0x00001p#67984EE4q9sEHnHU2/aHLfLtUuMWW7");
+                "1007ACF1HyiP+w82rO31HQwRc2NNgOjB4MDAxMDE6/x0t0x00001p#77304610R49EsAxbjohtjsfASJ2r/Q");
         assertEquals("secret message", result);
     }
 
