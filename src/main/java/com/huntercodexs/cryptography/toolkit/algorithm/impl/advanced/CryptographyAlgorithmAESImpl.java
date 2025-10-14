@@ -1,8 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.advanced;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.contract.advanced.CryptographyContractAdvancedAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,19 +21,26 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
 
     @Generated
     private static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithmAESImpl.class);
 
     @Override
-    public String encrypt(CryptographyContract contract, String dataToEncrypt) {
-        return encryptAesAdvanced(dataToEncrypt, contract.getIv().getBytes(), contract.getSecretKey());
+    public String encrypt(Object contract, String dataToEncrypt) {
+
+        return encryptAesAdvanced(
+                dataToEncrypt,
+                ((CryptographyContractAdvancedAES) contract).getIv().getBytes(),
+                ((CryptographyContractAdvancedAES) contract).getSecretKey());
     }
 
     @Override
-    public String decrypt(CryptographyContract contract, String dataToDecrypt) {
-        return decryptAesAdvanced(dataToDecrypt, contract.getIv().getBytes(), contract.getSecretKey());
+    public String decrypt(Object contract, String dataToDecrypt) {
+        return decryptAesAdvanced(
+                dataToDecrypt,
+                ((CryptographyContractAdvancedAES) contract).getIv().getBytes(),
+                ((CryptographyContractAdvancedAES) contract).getSecretKey());
     }
 
     private static String encryptAesAdvanced(String dataToEncrypt, byte[] ivParameter, String secretKey) {
@@ -68,4 +75,5 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm {
             throw new CryptographyException(e.getMessage());
         }
     }
+
 }

@@ -1,8 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.simplifier;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifier3DES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -12,21 +12,27 @@ import java.util.Base64;
 /**
  * 3DES (DESede)
  * */
-public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Object> {
 
     @Override
-    public String encrypt(CryptographyContract contract, String dataToEncrypt) {
+    public String encrypt(Object contract, String dataToEncrypt) {
         try {
-            return encryptTripleDesSimplifier(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
+            return encryptTripleDesSimplifier(
+                    dataToEncrypt,
+                    ((CryptographyContractSimplifier3DES) contract).getCryptoSecretKey(),
+                    ((CryptographyContractSimplifier3DES) contract).getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(CryptographyContract contract, String dataToDecrypt) {
+    public String decrypt(Object contract, String dataToDecrypt) {
         try {
-            return decryptTripleDesSimplifier(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
+            return decryptTripleDesSimplifier(
+                    dataToDecrypt,
+                    ((CryptographyContractSimplifier3DES) contract).getCryptoSecretKey(),
+                    ((CryptographyContractSimplifier3DES) contract).getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }

@@ -2,7 +2,7 @@ package com.huntercodexs.cryptography.toolkit;
 
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
+import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ import java.util.Base64;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
 import static com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor.*;
-import static com.huntercodexs.cryptography.toolkit.resource.CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE;
+import static com.huntercodexs.cryptography.toolkit.contract.CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class CryptographyToolkit {

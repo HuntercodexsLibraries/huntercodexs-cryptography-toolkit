@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.huntercodexs.cryptography.toolkit.DataBuilder.contractForAesAnd3Des;
+import static com.huntercodexs.cryptography.toolkit.DataBuilder.argsForContractBasicAES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -24,7 +24,7 @@ class CryptographyToolkitBasicTests {
     @Test
     public void encryptAES256CBCUsingParameterBasicTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = algorithmAES.encrypt(contractForAesAnd3Des(), "This is a secret message, please don't break it !");
+        String result = algorithmAES.encrypt(argsForContractBasicAES(), "This is a secret message, please don't break it !");
         assertEquals(88, result.length());
         assertEquals("X52zJxNJS3fw36WjXLZ3zTdoepOy1ufFOScHVCTFwcr9uTdIHwXlzsWtGUv73HNKkLeMy5CYDk8tVhYpvz31lw==", result);
     }
@@ -33,7 +33,7 @@ class CryptographyToolkitBasicTests {
     public void decryptAES256CBCUsingParameterBasicTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = algorithmAES.decrypt(
-                contractForAesAnd3Des(),
+                argsForContractBasicAES(),
                 "X52zJxNJS3fw36WjXLZ3zTdoepOy1ufFOScHVCTFwcr9uTdIHwXlzsWtGUv73HNKkLeMy5CYDk8tVhYpvz31lw==");
         assertEquals("This is a secret message, please don't break it !", result);
     }

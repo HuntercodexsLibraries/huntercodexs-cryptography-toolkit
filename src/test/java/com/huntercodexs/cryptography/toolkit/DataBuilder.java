@@ -1,6 +1,14 @@
 package com.huntercodexs.cryptography.toolkit;
 
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
+import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
+import com.huntercodexs.cryptography.toolkit.contract.advanced.CryptographyContractAdvanced3DES;
+import com.huntercodexs.cryptography.toolkit.contract.advanced.CryptographyContractAdvancedAES;
+import com.huntercodexs.cryptography.toolkit.contract.basic.CryptographyContractBasicAES;
+import com.huntercodexs.cryptography.toolkit.contract.robust.CryptographyContractRobustAES;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifier3DES;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifierAES;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifierDES;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifierRSA;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
@@ -73,36 +81,72 @@ public class DataBuilder {
         return cryptographyContract;
     }
 
-    public static CryptographyContract contractForAesAnd3Des() {
-        CryptographyContract contract = new CryptographyContract();
+    public static CryptographyContractAdvanced3DES argsForContractAdvanced3DES() {
+        CryptographyContractAdvanced3DES contract = new CryptographyContractAdvanced3DES();
         contract.setSecretKey(SECRET_KEY_TEST);
         contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
+        contract.setCryptographySecretKeySource(CryptographyContractAdvanced3DES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(CryptographyContractAdvanced3DES.CryptographyIvSource.IV_FROM_PARAMETER);
         return contract;
     }
 
-    public static CryptographyContract contractForAesAnd3DesSimple(SecretKey secretKey, IvParameterSpec iv) {
-        CryptographyContract contract = new CryptographyContract();
+    public static CryptographyContractAdvancedAES argsForContractAdvancedAES() {
+        CryptographyContractAdvancedAES contract = new CryptographyContractAdvancedAES();
+        contract.setSecretKey(SECRET_KEY_TEST);
+        contract.setSalt(SALT_TEST);
+        contract.setIv(IV_TEST);
+        contract.setCryptographySecretKeySource(CryptographyContractAdvancedAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(CryptographyContractAdvancedAES.CryptographyIvSource.IV_FROM_PARAMETER);
+        return contract;
+    }
+
+    public static CryptographyContractBasicAES argsForContractBasicAES() {
+        CryptographyContractBasicAES contract = new CryptographyContractBasicAES();
+        contract.setSecretKey(SECRET_KEY_TEST);
+        contract.setSalt(SALT_TEST);
+        contract.setIv(IV_TEST);
+        contract.setCryptographySecretKeySource(CryptographyContractBasicAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(CryptographyContractBasicAES.CryptographyIvSource.IV_FROM_PARAMETER);
+        return contract;
+    }
+
+    public static CryptographyContractRobustAES argsForContractRobustAES() {
+        CryptographyContractRobustAES contract = new CryptographyContractRobustAES();
+        contract.setSecretKey(SECRET_KEY_TEST);
+        contract.setSalt(SALT_TEST);
+        contract.setIv(IV_TEST);
+        contract.setCryptographySecretKeySource(CryptographyContractRobustAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_PARAMETER);
+        return contract;
+    }
+
+    public static CryptographyContractSimplifier3DES argsForContractSimplifier3DES(SecretKey secretKey, IvParameterSpec iv) {
+        CryptographyContractSimplifier3DES contract = new CryptographyContractSimplifier3DES();
         contract.setCryptoSecretKey(secretKey);
         contract.setCryptoSpecIv(iv);
         return contract;
     }
 
-    public static CryptographyContract contractForRSA(PublicKey publicKey, PrivateKey privateKey) {
-        CryptographyContract contract = new CryptographyContract();
-        contract.setPublicKey(publicKey);
-        contract.setPrivateKey(privateKey);
+    public static CryptographyContractSimplifierAES argsForContractSimplifierAES(SecretKey secretKey, IvParameterSpec iv) {
+        CryptographyContractSimplifierAES contract = new CryptographyContractSimplifierAES();
+        contract.setCryptoSecretKey(secretKey);
+        contract.setCryptoSpecIv(iv);
         return contract;
     }
 
-    public static CryptographyContract contractForAesAnd3DesFromParameters() {
-        CryptographyContract cryptographyContract = new CryptographyContract();
-        cryptographyContract.setSecretKey(SECRET_KEY_TEST);
-        cryptographyContract.setSalt(SALT_TEST);
-        cryptographyContract.setIv(IV_TEST);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_PARAMETER);
-        return cryptographyContract;
+    public static CryptographyContractSimplifierDES argsForContractSimplifierDES(SecretKey desKey, IvParameterSpec iv) {
+        CryptographyContractSimplifierDES contract = new CryptographyContractSimplifierDES();
+        contract.setCryptoSecretKey(desKey);
+        contract.setCryptoSpecIv(iv);
+        return contract;
+    }
+
+    public static CryptographyContractSimplifierRSA argsForContractSimplifierRSA(PublicKey publicKey, PrivateKey privateKey) {
+        CryptographyContractSimplifierRSA contract = new CryptographyContractSimplifierRSA();
+        contract.setPublicKey(publicKey);
+        contract.setPrivateKey(privateKey);
+        return contract;
     }
 
 }

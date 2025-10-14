@@ -7,8 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.huntercodexs.cryptography.toolkit.DataBuilder.contractForAesAnd3DesSimple;
-import static com.huntercodexs.cryptography.toolkit.DataBuilder.contractForRSA;
+import static com.huntercodexs.cryptography.toolkit.DataBuilder.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -37,7 +36,7 @@ class CryptographyToolkitSimpleTests {
         String message = "Secret Message";
         var desKey = CryptographyUtility.generateDESKeyUtility();
         var desIv = CryptographyUtility.generateIvForDESUtility();
-        var contract = contractForAesAnd3DesSimple(desKey, desIv);
+        var contract = argsForContractSimplifierDES(desKey, desIv);
 
         String desEncrypted = algorithmDES.encrypt(contract, message);
         String desDecrypted = algorithmDES.decrypt(contract, desEncrypted);
@@ -52,7 +51,7 @@ class CryptographyToolkitSimpleTests {
         String message = "Secret Message";
         var tdesKey = CryptographyUtility.generateTripleDESKeyUtility();
         var tdesIv = CryptographyUtility.generateIvForDESUtility();
-        var contract =  contractForAesAnd3DesSimple(tdesKey, tdesIv);
+        var contract =  argsForContractSimplifier3DES(tdesKey, tdesIv);
 
         String tdesEncrypted = algorithm3DES.encrypt(contract, message);
         String tdesDecrypted = algorithm3DES.decrypt(contract, tdesEncrypted);
@@ -67,7 +66,7 @@ class CryptographyToolkitSimpleTests {
         String message = "Secret Message";
         var aesKey = CryptographyUtility.generateAESKeyUtility(256);
         var aesIv = CryptographyUtility.generateIvUtility();
-        var contract =  contractForAesAnd3DesSimple(aesKey, aesIv);
+        var contract =  argsForContractSimplifierAES(aesKey, aesIv);
 
         String aesEncrypted = algorithmAES.encrypt(contract, message);
         String aesDecrypted = algorithmAES.decrypt(contract, aesEncrypted);
@@ -82,7 +81,7 @@ class CryptographyToolkitSimpleTests {
 
         String message = "Secret Message";
         var rsaKeyPair = CryptographyUtility.generateRSAKeyPairUtility(2048);
-        var contract = contractForRSA(rsaKeyPair.getPublic(), rsaKeyPair.getPrivate());
+        var contract = argsForContractSimplifierRSA(rsaKeyPair.getPublic(), rsaKeyPair.getPrivate());
 
         String rsaEncrypted = algorithmRSA.encrypt(contract, message);
         String rsaDecrypted = algorithmRSA.decrypt(contract, rsaEncrypted);

@@ -1,9 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.basic;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.contract.basic.CryptographyContractBasicAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,26 +21,22 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
 
     @Generated
     public static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithmAESImpl.class);
 
-    CryptographyToolkitProcessor processor;
-
     @Override
-    public String encrypt(CryptographyContract contract, String dataToEncrypt) {
-        this.processor = new CryptographyToolkitProcessor(contract);
-        return encryptAes256CbcBasic(dataToEncrypt, contract);
+    public String encrypt(Object contract, String dataToEncrypt) {
+        return encryptAes256CbcBasic(dataToEncrypt, (CryptographyContractBasicAES) contract);
     }
 
     @Override
-    public String decrypt(CryptographyContract contract, String dataToDecrypt) {
-        this.processor = new CryptographyToolkitProcessor(contract);
-        return decryptAes256CbcBasic(dataToDecrypt, contract);
+    public String decrypt(Object contract, String dataToDecrypt) {
+        return decryptAes256CbcBasic(dataToDecrypt, (CryptographyContractBasicAES) contract);
     }
 
-    private String encryptAes256CbcBasic(String dataToEncrypt, CryptographyContract contract) {
+    private String encryptAes256CbcBasic(String dataToEncrypt, CryptographyContractBasicAES contract) {
         try {
 
             Key keySpec = new SecretKeySpec(contract.getSecretKey().getBytes(), AES);
@@ -57,7 +52,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm {
         }
     }
 
-    private String decryptAes256CbcBasic(String dataToDecrypt, CryptographyContract contract) {
+    private String decryptAes256CbcBasic(String dataToDecrypt, CryptographyContractBasicAES contract) {
         try {
 
             Key keySpec = new SecretKeySpec(contract.getSecretKey().getBytes(), AES);

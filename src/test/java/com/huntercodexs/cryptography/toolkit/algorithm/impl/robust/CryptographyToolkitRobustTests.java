@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import static com.huntercodexs.cryptography.toolkit.DataBuilder.contractForAesAnd3Des;
-import static com.huntercodexs.cryptography.toolkit.DataBuilder.contractForAesAnd3DesFromParameters;
+import static com.huntercodexs.cryptography.toolkit.DataBuilder.argsForContractRobustAES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.MockitoAnnotations.openMocks;
 
@@ -22,7 +21,7 @@ class CryptographyToolkitRobustTests {
     @Test
     public void encryptAES256CBCUsingParameterRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = algorithmAES.encrypt(contractForAesAnd3DesFromParameters(), "This is a secret message, please don't break it !");
+        String result = algorithmAES.encrypt(argsForContractRobustAES(), "This is a secret message, please don't break it !");
         assertEquals(108, result.length());
     }
 
@@ -30,7 +29,7 @@ class CryptographyToolkitRobustTests {
     public void decryptAES256CBCUsingParameterRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
         String result = algorithmAES.decrypt(
-                contractForAesAnd3DesFromParameters(),
+                argsForContractRobustAES(),
                 "fatKBQJq6dGwQkgmMb+prA643nGrl7NdCREheb+dcCx++BOk+NgHQ9QBVAbv9VvEkJGyoLvzpgUGBm9R6h2ujVEvFgJakxOedNuZfPZ3XOE=");
         assertEquals("This is a secret message, please don't break it !", result);
     }

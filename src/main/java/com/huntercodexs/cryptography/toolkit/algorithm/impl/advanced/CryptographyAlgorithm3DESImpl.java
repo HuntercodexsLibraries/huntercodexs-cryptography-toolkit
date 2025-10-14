@@ -1,8 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.advanced;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.contract.advanced.CryptographyContractAdvanced3DES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,19 +20,19 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
 /**
  * 3DES (DESede)
  * */
-public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Object> {
 
     @Generated
     private static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithm3DESImpl.class);
 
     @Override
-    public String encrypt(CryptographyContract contract, String dataToEncrypt) {
-        return encryptTripleDesAdvanced(dataToEncrypt, contract.getSecretKey());
+    public String encrypt(Object contract, String dataToEncrypt) {
+        return encryptTripleDesAdvanced(dataToEncrypt, ((CryptographyContractAdvanced3DES) contract).getSecretKey());
     }
 
     @Override
-    public String decrypt(CryptographyContract contract, String dataToDecrypt) {
-        return decryptTripleDesAdvanced(dataToDecrypt, contract.getSecretKey());
+    public String decrypt(Object contract, String dataToDecrypt) {
+        return decryptTripleDesAdvanced(dataToDecrypt, ((CryptographyContractAdvanced3DES) contract).getSecretKey());
     }
 
     private String encryptTripleDesAdvanced(String dataToEncrypt, String secretKey) {
@@ -74,4 +74,5 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm {
             throw new CryptographyException(e.getMessage());
         }
     }
+
 }

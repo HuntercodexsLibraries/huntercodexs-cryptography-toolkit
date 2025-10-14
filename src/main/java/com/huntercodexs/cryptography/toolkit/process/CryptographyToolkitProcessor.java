@@ -1,7 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.process;
 
+import com.huntercodexs.cryptography.toolkit.contract.robust.CryptographyContractRobustAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
+import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +13,8 @@ import java.util.Properties;
 import java.util.UUID;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
-import static com.huntercodexs.cryptography.toolkit.resource.CryptographyContract.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES;
-import static com.huntercodexs.cryptography.toolkit.resource.CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER;
+import static com.huntercodexs.cryptography.toolkit.contract.CryptographyContract.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES;
+import static com.huntercodexs.cryptography.toolkit.contract.CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER;
 
 public class CryptographyToolkitProcessor {
 
@@ -21,9 +22,14 @@ public class CryptographyToolkitProcessor {
     public static final Logger log = LoggerFactory.getLogger(CryptographyToolkitProcessor.class);
 
     CryptographyContract contract;
+    CryptographyContractRobustAES contractRobustAES;
 
     public CryptographyToolkitProcessor(CryptographyContract contract) {
         this.contract = contract;
+    }
+
+    public CryptographyToolkitProcessor(CryptographyContractRobustAES contract) {
+        this.contractRobustAES = contract;
     }
 
     public static String generateRandomKey() {
@@ -162,6 +168,35 @@ public class CryptographyToolkitProcessor {
         } else if (this.contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES) {
             return getIvFromProperties();
         } else if (this.contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE) {
+            if (isDecrypt && !isBasic) {
+                return automaticGeneratorForDecrypt(data);
+            } else if (isDecrypt) {
+                return data;
+            }
+            return generateRandomKey();
+        }
+
+        throw new CryptographyException("Cryptography Toolkit Fail: IV Parameter Spec (getIvFromSource)");
+    }
+
+    public String getSecretFromSourceRobust() {
+
+        if (this.contractRobustAES.getCryptographySecretKeySource().equals(CryptographyContractRobustAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER)) {
+            return this.contractRobustAES.getSecretKey();
+
+        } else if (this.contractRobustAES.getCryptographySecretKeySource().equals(CryptographyContractRobustAES.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES)) {
+            return getSecretKeyFromProperties();
+        }
+
+        throw new CryptographyException("Cryptography Toolkit Fail: Secret Spec (getSecretFromSource)");
+    }
+
+    public String getIvFromSourceRobust(String data, boolean isDecrypt, boolean isBasic) {
+        if (this.contractRobustAES.getCryptographyIvSource() == CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_PARAMETER) {
+            return this.contractRobustAES.getIv();
+        } else if (this.contractRobustAES.getCryptographyIvSource() == CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES) {
+            return getIvFromProperties();
+        } else if (this.contractRobustAES.getCryptographyIvSource() == CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_AUTO_GENERATE) {
             if (isDecrypt && !isBasic) {
                 return automaticGeneratorForDecrypt(data);
             } else if (isDecrypt) {

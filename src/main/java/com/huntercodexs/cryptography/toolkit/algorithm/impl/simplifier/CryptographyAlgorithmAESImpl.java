@@ -1,8 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.simplifier;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifierAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -12,21 +12,27 @@ import java.util.Base64;
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
 
     @Override
-    public String encrypt(CryptographyContract contract, String dataToEncrypt) {
+    public String encrypt(Object contract, String dataToEncrypt) {
         try {
-            return encryptAesSimplifier(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
+            return encryptAesSimplifier(
+                    dataToEncrypt,
+                    ((CryptographyContractSimplifierAES) contract).getCryptoSecretKey(),
+                    ((CryptographyContractSimplifierAES) contract).getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(CryptographyContract contract, String dataToDecrypt) {
+    public String decrypt(Object contract, String dataToDecrypt) {
         try {
-            return decryptAesSimplifier(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
+            return decryptAesSimplifier(
+                    dataToDecrypt,
+                    ((CryptographyContractSimplifierAES) contract).getCryptoSecretKey(),
+                    ((CryptographyContractSimplifierAES) contract).getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }

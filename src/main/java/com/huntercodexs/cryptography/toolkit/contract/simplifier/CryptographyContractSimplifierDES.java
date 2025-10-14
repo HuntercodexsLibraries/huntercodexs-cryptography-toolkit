@@ -1,4 +1,4 @@
-package com.huntercodexs.cryptography.toolkit.resource;
+package com.huntercodexs.cryptography.toolkit.contract.simplifier;
 
 import lombok.Data;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.security.PublicKey;
 
 @Data
 @RequiredArgsConstructor
-public class CryptographyContract {
+public class CryptographyContractSimplifierDES {
 
     private String secretKey;
     private String salt;

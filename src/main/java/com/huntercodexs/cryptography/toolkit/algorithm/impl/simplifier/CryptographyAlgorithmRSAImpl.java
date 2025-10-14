@@ -1,8 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.simplifier;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.contract.simplifier.CryptographyContractSimplifierRSA;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 
 import javax.crypto.Cipher;
 import java.security.PrivateKey;
@@ -12,21 +12,21 @@ import java.util.Base64;
 /** 
  * RSA (Asymmetric) 
  * */
-public class CryptographyAlgorithmRSAImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithmRSAImpl implements CryptographyAlgorithm<Object> {
 
     @Override
-    public String encrypt(CryptographyContract contract, String dataToEncrypt) {
+    public String encrypt(Object contract, String dataToEncrypt) {
         try {
-            return encryptRsaSimplifier(dataToEncrypt, contract.getPublicKey());
+            return encryptRsaSimplifier(dataToEncrypt, ((CryptographyContractSimplifierRSA) contract).getPublicKey());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(CryptographyContract contract, String dataToDecrypt) {
+    public String decrypt(Object contract, String dataToDecrypt) {
         try {
-            return decryptRsaSimplfier(dataToDecrypt, contract.getPrivateKey());
+            return decryptRsaSimplfier(dataToDecrypt, ((CryptographyContractSimplifierRSA) contract).getPrivateKey());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
