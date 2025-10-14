@@ -95,4 +95,14 @@ public class DataBuilder {
         return contract;
     }
 
+    public static CryptographyContract contractForAesAnd3DesFromParameters() {
+        CryptographyContract cryptographyContract = new CryptographyContract();
+        cryptographyContract.setSecretKey(SECRET_KEY_TEST);
+        cryptographyContract.setSalt(SALT_TEST);
+        cryptographyContract.setIv(IV_TEST);
+        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
+        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_PARAMETER);
+        return cryptographyContract;
+    }
+
 }
