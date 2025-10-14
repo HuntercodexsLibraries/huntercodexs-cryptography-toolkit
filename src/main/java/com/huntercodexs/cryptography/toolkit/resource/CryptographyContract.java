@@ -23,7 +23,6 @@ public class CryptographyContract {
     private PublicKey publicKey;
     private PrivateKey privateKey;
 
-    private CryptographyAlgorithmType algorithmType;
     private CryptographySecretKeySource cryptographySecretKeySource;
     private CryptographyIvSource cryptographyIvSource;
 
@@ -38,13 +37,5 @@ public class CryptographyContract {
         IV_FROM_PARAMETER,
         IV_FROM_APPLICATION_PROPERTIES,
         IV_FROM_AUTO_GENERATE;
-    }
-
-    @Getter
-    public enum CryptographyAlgorithmType {
-        DES,
-        TRIPLE_DES,
-        AES,
-        RSA;
     }
 }

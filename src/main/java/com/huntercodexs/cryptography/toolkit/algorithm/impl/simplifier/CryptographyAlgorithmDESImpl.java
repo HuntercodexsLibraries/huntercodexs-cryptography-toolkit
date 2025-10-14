@@ -1,6 +1,7 @@
-package com.huntercodexs.cryptography.toolkit.algorithm.impl;
+package com.huntercodexs.cryptography.toolkit.algorithm.impl.simplifier;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 
 import javax.crypto.Cipher;
@@ -9,37 +10,37 @@ import javax.crypto.spec.IvParameterSpec;
 import java.util.Base64;
 
 /**
- * 3DES (DESede)
+ * DES (Symmetric)
  * */
-public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm {
+public class CryptographyAlgorithmDESImpl implements CryptographyAlgorithm {
 
     @Override
     public String encrypt(CryptographyContract contract, String dataToEncrypt) {
         try {
-            return tripleDesEncrypt(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
+            return encryptDesSimplifier(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
     public String decrypt(CryptographyContract contract, String dataToDecrypt) {
         try {
-            return tripleDesDecrypt(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
+            return decryptDesSimplifier(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CryptographyException(e.getMessage());
         }
     }
 
-    private String tripleDesEncrypt(String plainText, SecretKey key, IvParameterSpec iv) throws Exception {
-        Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+    private String encryptDesSimplifier(String plainText, SecretKey key, IvParameterSpec iv) throws Exception {
+        Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
         byte[] encrypted = cipher.doFinal(plainText.getBytes());
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
-    private String tripleDesDecrypt(String cipherText, SecretKey key, IvParameterSpec iv) throws Exception {
-        Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+    private String decryptDesSimplifier(String cipherText, SecretKey key, IvParameterSpec iv) throws Exception {
+        Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
         byte[] decoded = Base64.getDecoder().decode(cipherText);
         byte[] decrypted = cipher.doFinal(decoded);

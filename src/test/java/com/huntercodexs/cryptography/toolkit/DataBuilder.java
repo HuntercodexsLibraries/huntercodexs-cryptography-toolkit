@@ -73,14 +73,22 @@ public class DataBuilder {
         return cryptographyContract;
     }
 
-    public static CryptographyContract contractForAes3Des(SecretKey secretKey, IvParameterSpec iv) {
+    public static CryptographyContract contractForAesAnd3Des() {
+        CryptographyContract contract = new CryptographyContract();
+        contract.setSecretKey(SECRET_KEY_TEST);
+        contract.setSalt(SALT_TEST);
+        contract.setIv(IV_TEST);
+        return contract;
+    }
+
+    public static CryptographyContract contractForAesAnd3DesSimple(SecretKey secretKey, IvParameterSpec iv) {
         CryptographyContract contract = new CryptographyContract();
         contract.setCryptoSecretKey(secretKey);
         contract.setCryptoSpecIv(iv);
         return contract;
     }
 
-    public static CryptographyContract rsaContract(PublicKey publicKey, PrivateKey privateKey) {
+    public static CryptographyContract contractForRSA(PublicKey publicKey, PrivateKey privateKey) {
         CryptographyContract contract = new CryptographyContract();
         contract.setPublicKey(publicKey);
         contract.setPrivateKey(privateKey);

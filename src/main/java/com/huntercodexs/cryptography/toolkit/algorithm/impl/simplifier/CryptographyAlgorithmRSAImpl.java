@@ -1,6 +1,7 @@
-package com.huntercodexs.cryptography.toolkit.algorithm.impl;
+package com.huntercodexs.cryptography.toolkit.algorithm.impl.simplifier;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
+import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.resource.CryptographyContract;
 
 import javax.crypto.Cipher;
@@ -16,29 +17,29 @@ public class CryptographyAlgorithmRSAImpl implements CryptographyAlgorithm {
     @Override
     public String encrypt(CryptographyContract contract, String dataToEncrypt) {
         try {
-            return rsaEncrypt(dataToEncrypt, contract.getPublicKey());
+            return encryptRsaSimplifier(dataToEncrypt, contract.getPublicKey());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
     public String decrypt(CryptographyContract contract, String dataToDecrypt) {
         try {
-            return rsaDecrypt(dataToDecrypt, contract.getPrivateKey());
+            return decryptRsaSimplfier(dataToDecrypt, contract.getPrivateKey());
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CryptographyException(e.getMessage());
         }
     }
 
-    private String rsaEncrypt(String plainText, PublicKey publicKey) throws Exception {
+    private String encryptRsaSimplifier(String plainText, PublicKey publicKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] encrypted = cipher.doFinal(plainText.getBytes());
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
-    private String rsaDecrypt(String cipherText, PrivateKey privateKey) throws Exception {
+    private String decryptRsaSimplfier(String cipherText, PrivateKey privateKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
         byte[] decoded = Base64.getDecoder().decode(cipherText);
