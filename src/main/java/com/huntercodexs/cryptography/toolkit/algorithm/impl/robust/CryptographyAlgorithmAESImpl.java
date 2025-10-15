@@ -17,6 +17,7 @@ import java.security.spec.KeySpec;
 import java.util.Base64;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource.IV_FROM_AUTO_GENERATE;
 import static com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor.log;
 
 /**
@@ -63,7 +64,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             System.arraycopy(iv, 0, encryptedData, 0, iv.length);
             System.arraycopy(cipherText, 0, encryptedData, iv.length, cipherText.length);
 
-            if (contract.getCryptographyIvSource().equals(CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_AUTO_GENERATE)) {
+            if (contract.getCryptographyIvSource().equals(IV_FROM_AUTO_GENERATE)) {
                 return this.processor.automaticGeneratorForEncrypt(ivSource, encryptedData);
             }
 
@@ -83,7 +84,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             String ivSource = source.substring(0, 16);
             String encSource = dataToDecrypt;
 
-            if (contract.getCryptographyIvSource().equals(CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_AUTO_GENERATE)) {
+            if (contract.getCryptographyIvSource().equals(IV_FROM_AUTO_GENERATE)) {
                 encSource = source.substring(16);
             }
 

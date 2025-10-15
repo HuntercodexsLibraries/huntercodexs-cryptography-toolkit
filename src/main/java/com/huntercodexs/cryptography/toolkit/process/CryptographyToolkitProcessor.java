@@ -1,8 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.process;
 
+import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import com.huntercodexs.cryptography.toolkit.contract.robust.CryptographyContractRobustAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +13,9 @@ import java.util.Properties;
 import java.util.UUID;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
-import static com.huntercodexs.cryptography.toolkit.contract.CryptographyContract.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES;
-import static com.huntercodexs.cryptography.toolkit.contract.CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER;
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource.*;
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES;
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource.SECRET_FROM_PARAMETER;
 
 public class CryptographyToolkitProcessor {
 
@@ -49,11 +50,11 @@ public class CryptographyToolkitProcessor {
     }
 
     public static String getIvFromStaticSource(CryptographyContract contract, String data, boolean isDecrypt) {
-        if (contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_PARAMETER) {
+        if (contract.getCryptographyIvSource() == IV_FROM_PARAMETER) {
             return contract.getIv();
-        } else if (contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES) {
+        } else if (contract.getCryptographyIvSource() == IV_FROM_APPLICATION_PROPERTIES) {
             return getIvFromStaticProperties();
-        } else if (contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE) {
+        } else if (contract.getCryptographyIvSource() == IV_FROM_AUTO_GENERATE) {
             if (isDecrypt) {
                 return automaticGeneratorForStaticDecrypt(data);
             }
@@ -163,11 +164,11 @@ public class CryptographyToolkitProcessor {
     }
 
     public String getIvFromSource(String data, boolean isDecrypt, boolean isBasic) {
-        if (this.contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_PARAMETER) {
+        if (this.contract.getCryptographyIvSource() == IV_FROM_PARAMETER) {
             return this.contract.getIv();
-        } else if (this.contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES) {
+        } else if (this.contract.getCryptographyIvSource() == IV_FROM_APPLICATION_PROPERTIES) {
             return getIvFromProperties();
-        } else if (this.contract.getCryptographyIvSource() == CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE) {
+        } else if (this.contract.getCryptographyIvSource() == IV_FROM_AUTO_GENERATE) {
             if (isDecrypt && !isBasic) {
                 return automaticGeneratorForDecrypt(data);
             } else if (isDecrypt) {
@@ -181,10 +182,10 @@ public class CryptographyToolkitProcessor {
 
     public String getSecretFromSourceRobust() {
 
-        if (this.contractRobustAES.getCryptographySecretKeySource().equals(CryptographyContractRobustAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER)) {
+        if (this.contractRobustAES.getCryptographySecretKeySource().equals(SECRET_FROM_PARAMETER)) {
             return this.contractRobustAES.getSecretKey();
 
-        } else if (this.contractRobustAES.getCryptographySecretKeySource().equals(CryptographyContractRobustAES.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES)) {
+        } else if (this.contractRobustAES.getCryptographySecretKeySource().equals(SECRET_FROM_APPLICATION_PROPERTIES)) {
             return getSecretKeyFromProperties();
         }
 
@@ -192,11 +193,11 @@ public class CryptographyToolkitProcessor {
     }
 
     public String getIvFromSourceRobust(String data, boolean isDecrypt, boolean isBasic) {
-        if (this.contractRobustAES.getCryptographyIvSource() == CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_PARAMETER) {
+        if (this.contractRobustAES.getCryptographyIvSource() == IV_FROM_PARAMETER) {
             return this.contractRobustAES.getIv();
-        } else if (this.contractRobustAES.getCryptographyIvSource() == CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES) {
+        } else if (this.contractRobustAES.getCryptographyIvSource() == IV_FROM_APPLICATION_PROPERTIES) {
             return getIvFromProperties();
-        } else if (this.contractRobustAES.getCryptographyIvSource() == CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_AUTO_GENERATE) {
+        } else if (this.contractRobustAES.getCryptographyIvSource() == IV_FROM_AUTO_GENERATE) {
             if (isDecrypt && !isBasic) {
                 return automaticGeneratorForDecrypt(data);
             } else if (isDecrypt) {

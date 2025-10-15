@@ -15,6 +15,10 @@ import javax.crypto.spec.IvParameterSpec;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource.*;
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES;
+import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource.SECRET_FROM_PARAMETER;
+
 public class DataBuilder {
 
     public static final String SALT_TEST = "1";
@@ -26,8 +30,8 @@ public class DataBuilder {
         cryptographyContract.setSecretKey(SECRET_KEY_TEST);
         cryptographyContract.setSalt(SALT_TEST);
         cryptographyContract.setIv(IV_TEST);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_PARAMETER);
+        cryptographyContract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        cryptographyContract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return cryptographyContract;
     }
 
@@ -36,8 +40,8 @@ public class DataBuilder {
         cryptographyContract.setSecretKey(SECRET_KEY_TEST);
         cryptographyContract.setSalt(SALT_TEST);
         cryptographyContract.setIv(null);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES);
+        cryptographyContract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        cryptographyContract.setCryptographyIvSource(IV_FROM_APPLICATION_PROPERTIES);
         return cryptographyContract;
     }
 
@@ -46,8 +50,8 @@ public class DataBuilder {
         cryptographyContract.setSecretKey(SECRET_KEY_TEST);
         cryptographyContract.setSalt(SALT_TEST);
         cryptographyContract.setIv(null);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE);
+        cryptographyContract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        cryptographyContract.setCryptographyIvSource(IV_FROM_AUTO_GENERATE);
         return cryptographyContract;
     }
 
@@ -56,8 +60,8 @@ public class DataBuilder {
         cryptographyContract.setSecretKey(null);
         cryptographyContract.setSalt(SALT_TEST);
         cryptographyContract.setIv(IV_TEST);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_PARAMETER);
+        cryptographyContract.setCryptographySecretKeySource(SECRET_FROM_APPLICATION_PROPERTIES);
+        cryptographyContract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return cryptographyContract;
     }
 
@@ -66,8 +70,8 @@ public class DataBuilder {
         cryptographyContract.setSecretKey(null);
         cryptographyContract.setSalt(SALT_TEST);
         cryptographyContract.setIv(null);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_APPLICATION_PROPERTIES);
+        cryptographyContract.setCryptographySecretKeySource(SECRET_FROM_APPLICATION_PROPERTIES);
+        cryptographyContract.setCryptographyIvSource(IV_FROM_APPLICATION_PROPERTIES);
         return cryptographyContract;
     }
 
@@ -76,8 +80,8 @@ public class DataBuilder {
         cryptographyContract.setSecretKey(null);
         cryptographyContract.setSalt(SALT_TEST);
         cryptographyContract.setIv(null);
-        cryptographyContract.setCryptographySecretKeySource(CryptographyContract.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES);
-        cryptographyContract.setCryptographyIvSource(CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE);
+        cryptographyContract.setCryptographySecretKeySource(SECRET_FROM_APPLICATION_PROPERTIES);
+        cryptographyContract.setCryptographyIvSource(IV_FROM_AUTO_GENERATE);
         return cryptographyContract;
     }
 
@@ -86,8 +90,8 @@ public class DataBuilder {
         contract.setSecretKey(SECRET_KEY_TEST);
         contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(CryptographyContractAdvanced3DES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(CryptographyContractAdvanced3DES.CryptographyIvSource.IV_FROM_PARAMETER);
+        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 
@@ -96,8 +100,8 @@ public class DataBuilder {
         contract.setSecretKey(SECRET_KEY_TEST);
         contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(CryptographyContractAdvancedAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(CryptographyContractAdvancedAES.CryptographyIvSource.IV_FROM_PARAMETER);
+        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 
@@ -106,8 +110,8 @@ public class DataBuilder {
         contract.setSecretKey(SECRET_KEY_TEST);
         contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(CryptographyContractBasicAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(CryptographyContractBasicAES.CryptographyIvSource.IV_FROM_PARAMETER);
+        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 
@@ -116,8 +120,8 @@ public class DataBuilder {
         contract.setSecretKey(SECRET_KEY_TEST);
         contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(CryptographyContractRobustAES.CryptographySecretKeySource.SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(CryptographyContractRobustAES.CryptographyIvSource.IV_FROM_PARAMETER);
+        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
+        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 

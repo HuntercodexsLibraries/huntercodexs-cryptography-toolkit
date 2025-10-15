@@ -1,5 +1,7 @@
 package com.huntercodexs.cryptography.toolkit.contract;
 
+import com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource;
+import com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,32 +12,21 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 
 @Data
+@Getter
 @RequiredArgsConstructor
 public class CryptographyContract {
 
-    public String secretKey;
-    public String salt;
-    public String iv;
+    private String secretKey;
+    private String salt;
+    private String iv;
 
-    public SecretKey cryptoSecretKey;
-    public IvParameterSpec cryptoSpecIv;
+    private SecretKey cryptoSecretKey;
+    private IvParameterSpec cryptoSpecIv;
 
-    public PublicKey publicKey;
-    public PrivateKey privateKey;
+    private PublicKey publicKey;
+    private PrivateKey privateKey;
 
-    public CryptographySecretKeySource cryptographySecretKeySource;
-    public CryptographyIvSource cryptographyIvSource;
+    private CryptographySecretKeySource cryptographySecretKeySource;
+    private CryptographyIvSource cryptographyIvSource;
 
-    @Getter
-    public enum CryptographySecretKeySource {
-        SECRET_FROM_PARAMETER,
-        SECRET_FROM_APPLICATION_PROPERTIES;
-    }
-
-    @Getter
-    public enum CryptographyIvSource {
-        IV_FROM_PARAMETER,
-        IV_FROM_APPLICATION_PROPERTIES,
-        IV_FROM_AUTO_GENERATE;
-    }
 }

@@ -1,7 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.contract.simplifier;
 
+import com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource;
+import com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource;
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import javax.crypto.SecretKey;
@@ -26,16 +27,4 @@ public class CryptographyContractSimplifierAES {
     public CryptographySecretKeySource cryptographySecretKeySource;
     public CryptographyIvSource cryptographyIvSource;
 
-    @Getter
-    public enum CryptographySecretKeySource {
-        SECRET_FROM_PARAMETER,
-        SECRET_FROM_APPLICATION_PROPERTIES;
-    }
-
-    @Getter
-    public enum CryptographyIvSource {
-        IV_FROM_PARAMETER,
-        IV_FROM_APPLICATION_PROPERTIES,
-        IV_FROM_AUTO_GENERATE;
-    }
 }
