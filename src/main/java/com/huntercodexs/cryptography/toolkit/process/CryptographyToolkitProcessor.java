@@ -7,15 +7,15 @@ import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Base64;
-import java.util.Properties;
 import java.util.UUID;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
 import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource.*;
 import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource.SECRET_FROM_APPLICATION_PROPERTIES;
 import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographySecretKeySource.SECRET_FROM_PARAMETER;
+import static com.huntercodexs.cryptography.toolkit.resource.CryptographyUtility.getIvFromProperties;
+import static com.huntercodexs.cryptography.toolkit.resource.CryptographyUtility.getSecretKeyFromProperties;
 
 public class CryptographyToolkitProcessor {
 
@@ -43,7 +43,7 @@ public class CryptographyToolkitProcessor {
             return contract.getSecretKey();
 
         } else if (contract.getCryptographySecretKeySource().equals(SECRET_FROM_APPLICATION_PROPERTIES)) {
-            return getSecretKeyFromStaticProperties();
+            return getSecretKeyFromProperties();
         }
 
         throw new CryptographyException("Cryptography Toolkit Fail: Secret Spec (getSecretFromStaticSource)");
@@ -53,7 +53,7 @@ public class CryptographyToolkitProcessor {
         if (contract.getCryptographyIvSource() == IV_FROM_PARAMETER) {
             return contract.getIv();
         } else if (contract.getCryptographyIvSource() == IV_FROM_APPLICATION_PROPERTIES) {
-            return getIvFromStaticProperties();
+            return getIvFromProperties();
         } else if (contract.getCryptographyIvSource() == IV_FROM_AUTO_GENERATE) {
             if (isDecrypt) {
                 return automaticGeneratorForStaticDecrypt(data);
@@ -62,28 +62,6 @@ public class CryptographyToolkitProcessor {
         }
 
         throw new CryptographyException("Cryptography Toolkit Fail: IV Parameter Spec (getIvFromStaticSource)");
-    }
-
-    public static String getSecretKeyFromStaticProperties() {
-        try {
-            Properties prop = new Properties();
-            prop.load(CryptographyToolkitProcessor.class.getClassLoader().getResourceAsStream("application.properties"));
-            return prop.getProperty("cryptography-toolkit.secret-key.parameter");
-        } catch (IOException e) {
-            log.error("Fail in CryptographyToolkitProcessor.getSecretKeyFromStaticProperties: {}", e.getMessage());
-            throw new CryptographyException(e.getMessage());
-        }
-    }
-
-    public static String getIvFromStaticProperties() {
-        try {
-            Properties prop = new Properties();
-            prop.load(CryptographyToolkitProcessor.class.getClassLoader().getResourceAsStream("application.properties"));
-            return prop.getProperty("cryptography-toolkit.iv.parameter");
-        } catch (IOException e) {
-            log.error("Fail in CryptographyToolkitProcessor.getIvFromStaticProperties: {}", e.getMessage());
-            throw new CryptographyException(e.getMessage());
-        }
     }
 
     public static String automaticGeneratorForStaticEncrypt(String ivSource, byte[] encryptedData) {
@@ -207,28 +185,6 @@ public class CryptographyToolkitProcessor {
         }
 
         throw new CryptographyException("Cryptography Toolkit Fail: IV Parameter Spec (getIvFromSource)");
-    }
-
-    public String getSecretKeyFromProperties() {
-        try {
-            Properties prop = new Properties();
-            prop.load(CryptographyToolkitProcessor.class.getClassLoader().getResourceAsStream("application.properties"));
-            return prop.getProperty("cryptography-toolkit.secret-key.parameter");
-        } catch (IOException e) {
-            log.error("Fail in CryptographyToolkitProcessor.getSecretKeyFromProperties: {}", e.getMessage());
-            throw new CryptographyException(e.getMessage());
-        }
-    }
-
-    public String getIvFromProperties() {
-        try {
-            Properties prop = new Properties();
-            prop.load(CryptographyToolkitProcessor.class.getClassLoader().getResourceAsStream("application.properties"));
-            return prop.getProperty("cryptography-toolkit.iv.parameter");
-        } catch (IOException e) {
-            log.error("Fail in CryptographyToolkitProcessor.getIvFromProperties: {}", e.getMessage());
-            throw new CryptographyException(e.getMessage());
-        }
     }
 
     public String automaticGeneratorForEncrypt(String ivSource, byte[] encryptedData) {

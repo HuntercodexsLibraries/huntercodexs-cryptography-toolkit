@@ -50,7 +50,7 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
             return new String(Base64.getEncoder().encode(encryptedText));
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithm3DESImpl.tripleDesEncrypt: {}", e.getMessage());
+            log.error("Fail in CryptographyAlgorithm3DESImpl.encryptTripleDesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -70,7 +70,7 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
             return new String(plainText);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithm3DESImpl.tripleDesDecrypt: {}", e.getMessage());
+            log.error("Fail in CryptographyAlgorithm3DESImpl.decryptTripleDesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

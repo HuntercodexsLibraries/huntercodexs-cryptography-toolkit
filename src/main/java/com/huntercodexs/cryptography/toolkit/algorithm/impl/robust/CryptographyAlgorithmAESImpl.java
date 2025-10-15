@@ -52,7 +52,11 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             String secretKey = this.processor.getSecretFromSourceRobust();
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
+            KeySpec spec = new PBEKeySpec(
+                    secretKey.toCharArray(),
+                    contract.getSalt().getBytes(StandardCharsets.UTF_8),
+                    AES_ITERATION_COUNT_FOR_SPEC,
+                    AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
             SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
@@ -96,7 +100,11 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             String secretKey = this.processor.getSecretFromSourceRobust();
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
+            KeySpec spec = new PBEKeySpec(
+                    secretKey.toCharArray(),
+                    contract.getSalt().getBytes(StandardCharsets.UTF_8),
+                    AES_ITERATION_COUNT_FOR_SPEC,
+                    AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
             SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 

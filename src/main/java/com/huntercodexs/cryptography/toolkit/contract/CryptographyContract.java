@@ -6,11 +6,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-
 @Data
 @Getter
 @RequiredArgsConstructor
@@ -19,12 +14,6 @@ public class CryptographyContract {
     private String secretKey;
     private String salt;
     private String iv;
-
-    private SecretKey cryptoSecretKey;
-    private IvParameterSpec cryptoSpecIv;
-
-    private PublicKey publicKey;
-    private PrivateKey privateKey;
 
     private CryptographySecretKeySource cryptographySecretKeySource;
     private CryptographyIvSource cryptographyIvSource;

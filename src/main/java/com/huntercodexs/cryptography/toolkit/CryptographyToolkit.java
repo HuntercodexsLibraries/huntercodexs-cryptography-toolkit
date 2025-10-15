@@ -1,9 +1,9 @@
 package com.huntercodexs.cryptography.toolkit;
 
 import com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants;
+import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
-import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +52,11 @@ public class CryptographyToolkit {
             String secretKey = getSecretFromStaticSource(contract);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
+            KeySpec spec = new PBEKeySpec(
+                    secretKey.toCharArray(),
+                    contract.getSalt().getBytes(StandardCharsets.UTF_8),
+                    AES_ITERATION_COUNT_FOR_SPEC,
+                    AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
             SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
@@ -71,7 +75,7 @@ public class CryptographyToolkit {
             return Base64.getEncoder().encodeToString(encryptedData);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.encryptAesCbc256Static: {}", e.getMessage());
+            log.error("Fail in CryptographyToolkit.encryptAes256CbcRobust: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -95,7 +99,11 @@ public class CryptographyToolkit {
             String secretKey = getSecretFromStaticSource(contract);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
+            KeySpec spec = new PBEKeySpec(
+                    secretKey.toCharArray(),
+                    contract.getSalt().getBytes(StandardCharsets.UTF_8),
+                    AES_ITERATION_COUNT_FOR_SPEC,
+                    AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
             SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
@@ -109,7 +117,7 @@ public class CryptographyToolkit {
             return new String(decryptedText, StandardCharsets.UTF_8);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.decryptAesCbc256Static: {}", e.getMessage());
+            log.error("Fail in CryptographyToolkit.decryptAes256CbcRobust: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -130,7 +138,7 @@ public class CryptographyToolkit {
             return automaticGeneratorForRobustEncrypt(ivSource, secretKey, encryptedData);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.encryptAesCbc256DynamicFULL_AUTO_GENERATED: {}", e.getMessage());
+            log.error("Fail in CryptographyToolkit.encryptAes256CbcAutomatic: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -153,7 +161,7 @@ public class CryptographyToolkit {
             return new String(decValue);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.decryptAesCbc256DynamicFULL_AUTO_GENERATED: {}", e.getMessage());
+            log.error("Fail in CryptographyToolkit.decryptAes256CbcAutomatic: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

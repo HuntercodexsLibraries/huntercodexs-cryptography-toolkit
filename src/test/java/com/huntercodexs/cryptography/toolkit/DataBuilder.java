@@ -88,10 +88,6 @@ public class DataBuilder {
     public static CryptographyContractAdvanced3DES argsForContractAdvanced3DES() {
         CryptographyContractAdvanced3DES contract = new CryptographyContractAdvanced3DES();
         contract.setSecretKey(SECRET_KEY_TEST);
-        contract.setSalt(SALT_TEST);
-        contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 
@@ -100,18 +96,13 @@ public class DataBuilder {
         contract.setSecretKey(SECRET_KEY_TEST);
         contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 
     public static CryptographyContractBasicAES argsForContractBasicAES() {
         CryptographyContractBasicAES contract = new CryptographyContractBasicAES();
         contract.setSecretKey(SECRET_KEY_TEST);
-        contract.setSalt(SALT_TEST);
         contract.setIv(IV_TEST);
-        contract.setCryptographySecretKeySource(SECRET_FROM_PARAMETER);
-        contract.setCryptographyIvSource(IV_FROM_PARAMETER);
         return contract;
     }
 

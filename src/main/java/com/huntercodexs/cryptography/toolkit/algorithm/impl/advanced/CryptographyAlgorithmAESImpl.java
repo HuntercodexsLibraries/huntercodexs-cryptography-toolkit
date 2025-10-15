@@ -54,7 +54,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(Base64.getEncoder().encode(bytes));
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithmAESImpl.aesEncrypt: {}", e.getMessage());
+            log.error("Fail in CryptographyAlgorithmAESImpl.encryptAesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -71,7 +71,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(decValue);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithmAESImpl.aesDecrypt: {}", e.getMessage());
+            log.error("Fail in CryptographyAlgorithmAESImpl.decryptAesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

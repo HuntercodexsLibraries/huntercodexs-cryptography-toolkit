@@ -9,6 +9,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import java.util.Base64;
 
+import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.TRIPLE_DES_INSTANCE_TYPE_FOR_CIPHER;
+
 /**
  * 3DES (DESede)
  * */
@@ -39,14 +41,14 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
     }
 
     private String encryptTripleDesSimplifier(String plainText, SecretKey key, IvParameterSpec iv) throws Exception {
-        Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance(TRIPLE_DES_INSTANCE_TYPE_FOR_CIPHER);
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
         byte[] encrypted = cipher.doFinal(plainText.getBytes());
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
     private String decryptTripleDesSimplifier(String cipherText, SecretKey key, IvParameterSpec iv) throws Exception {
-        Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+        Cipher cipher = Cipher.getInstance(TRIPLE_DES_INSTANCE_TYPE_FOR_CIPHER);
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
         byte[] decoded = Base64.getDecoder().decode(cipherText);
         byte[] decrypted = cipher.doFinal(decoded);

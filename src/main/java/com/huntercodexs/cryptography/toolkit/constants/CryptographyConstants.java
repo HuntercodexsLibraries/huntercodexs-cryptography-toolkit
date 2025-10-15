@@ -5,11 +5,19 @@ import static com.huntercodexs.cryptography.toolkit.resource.CryptographyUtility
 
 public final class CryptographyConstants {
 
+    public static final String DES_ALGORITHM_INSTANCE_NAME = "DES";
+    public static final String TRIPLE_DES_ALGORITHM_INSTANCE_NAME = "DESede";
+    public static final String AES_ALGORITHM_INSTANCE_NAME = "AES";
+    public static final String RSA_ALGORITHM_INSTANCE_NAME = "RSA";
+
     public static final String SECRET_CONCAT_VALUE = "/x0t0x00001p#";
     public static final String SAFETY_FIRST_VALUE = loadSafetyFirstValue();
     public static final String SAFETY_SECOND_VALUE = loadSafetySecondValue();
 
+    public static final String DES_INSTANCE_TYPE_FOR_CIPHER = "DES/CBC/PKCS5Padding";
+
     public static final String TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY = "DESede";
+    public static final String TRIPLE_DES_INSTANCE_TYPE_FOR_CIPHER = "DESede/CBC/PKCS5Padding";
 
     public static final int AES_KEY_LENGTH_FOR_SPEC = 256;
     public static final int AES_ITERATION_COUNT_FOR_SPEC = 65536;
@@ -17,4 +25,5 @@ public final class CryptographyConstants {
     public static final String AES_INSTANCE_TYPE_FOR_CIPHER = "AES/CBC/PKCS5Padding";
     public static final String AES_SECRET_KEY_INSTANCE_FACTORY = "PBKDF2WithHmacSHA256";
 
+    public static final String RSA_INSTANCE_TYPE_FOR_CIPHER = "RSA/ECB/PKCS1Padding";
 }
