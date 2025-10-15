@@ -39,17 +39,17 @@ public class CryptographyToolkit {
         this.processor = new CryptographyToolkitProcessor(this.contract);
     }
 
-    public static String encryptAes256CbcRobust(CryptographyContract contract, String dataToEncrypt) {
+    public static String encryptAes256CbcStaticRobust(CryptographyContract contract, String dataToEncrypt) {
 
         try {
 
-            String ivSource = getIvFromStaticSource(contract, dataToEncrypt, false);
+            String ivSource = getIvFromPreDefinedSource(contract, dataToEncrypt, false);
             byte[] iv = ivSource.getBytes(StandardCharsets.UTF_8);
             SecureRandom secureRandom = new SecureRandom();
             IvParameterSpec ivSpec = new IvParameterSpec(iv);
             secureRandom.nextBytes(iv);
 
-            String secretKey = getSecretFromStaticSource(contract);
+            String secretKey = getSecretFromPreDefinedSource(contract);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
             KeySpec spec = new PBEKeySpec(
@@ -69,7 +69,7 @@ public class CryptographyToolkit {
             System.arraycopy(cipherText, 0, encryptedData, iv.length, cipherText.length);
 
             if (contract.getCryptographyIvSource().equals(IV_FROM_AUTO_GENERATE)) {
-                return automaticGeneratorForStaticEncrypt(ivSource, encryptedData);
+                return dataGeneratorForEncryptStaticRobust(ivSource, encryptedData);
             }
 
             return Base64.getEncoder().encodeToString(encryptedData);
@@ -80,10 +80,10 @@ public class CryptographyToolkit {
         }
     }
 
-    public static String decryptAes256CbcRobust(CryptographyContract contract, String dataToDecrypt) {
+    public static String decryptAes256CbcStaticRobust(CryptographyContract contract, String dataToDecrypt) {
 
         try {
-            String source = getIvFromStaticSource(contract, dataToDecrypt, true);
+            String source = getIvFromPreDefinedSource(contract, dataToDecrypt, true);
             String ivSource = source.substring(0, 16);
             String encSource = dataToDecrypt;
 
@@ -96,7 +96,7 @@ public class CryptographyToolkit {
             byte[] encryptedData = Base64.getDecoder().decode(encSource);
             System.arraycopy(encryptedData, 0, iv, 0, iv.length);
 
-            String secretKey = getSecretFromStaticSource(contract);
+            String secretKey = getSecretFromPreDefinedSource(contract);
 
             SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
             KeySpec spec = new PBEKeySpec(
@@ -135,7 +135,7 @@ public class CryptographyToolkit {
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, param);
             byte[] encryptedData = cipher.doFinal(dataToEncrypt.getBytes(UTF_8));
 
-            return automaticGeneratorForRobustEncrypt(ivSource, secretKey, encryptedData);
+            return dataGeneratorForEncryptAutomatic(ivSource, secretKey, encryptedData);
 
         } catch (Exception e) {
             log.error("Fail in CryptographyToolkit.encryptAes256CbcAutomatic: {}", e.getMessage());
@@ -147,7 +147,7 @@ public class CryptographyToolkit {
 
         try {
 
-            String decipher = automaticGeneratorForRobustDecrypt(dataToDecrypt);
+            String decipher = dataGeneratorForDecryptAutomatic(dataToDecrypt);
             String ivSource = decipher.substring(0, 16);
             String secretKey = decipher.substring(16, 32);
             String encSource = decipher.substring(32);
@@ -179,7 +179,7 @@ public class CryptographyToolkit {
             byte[] encryptedData = cipher.doFinal(dataToEncrypt.getBytes(UTF_8));
 
             if (this.contract.getCryptographyIvSource().equals(IV_FROM_AUTO_GENERATE)) {
-                return this.processor.automaticGeneratorForDynamicBasicEncrypt(ivSource, encryptedData);
+                return ivSource+Base64.getEncoder().encodeToString(encryptedData);
             }
 
             return new String(Base64.getEncoder().encode(encryptedData));

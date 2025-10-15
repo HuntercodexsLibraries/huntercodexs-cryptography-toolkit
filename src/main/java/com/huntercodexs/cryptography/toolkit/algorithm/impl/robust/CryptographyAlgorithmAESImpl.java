@@ -69,7 +69,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             System.arraycopy(cipherText, 0, encryptedData, iv.length, cipherText.length);
 
             if (contract.getCryptographyIvSource().equals(IV_FROM_AUTO_GENERATE)) {
-                return this.processor.automaticGeneratorForEncrypt(ivSource, encryptedData);
+                return this.processor.dataGeneratorForEncryptRobust(ivSource, encryptedData);
             }
 
             return Base64.getEncoder().encodeToString(encryptedData);

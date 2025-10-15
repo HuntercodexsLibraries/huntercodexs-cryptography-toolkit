@@ -21,7 +21,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingParameterStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParameters(),"This is a secret message, please don't break it !");
         assertEquals(108, result.length());
     }
@@ -29,7 +29,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingParameterStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParameters(),
                 "zQj5INzIi2XrRsd+sgevBw643nGrl7NdCREheb+dcCx++BOk+NgHQ9QBVAbv9VvEkJGyoLvzpgUGBm9R6h2ujVEvFgJakxOedNuZfPZ3XOE=");
         assertEquals("This is a secret message, please don't break it !", result);
@@ -38,7 +38,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingParameterAndApplicationPropertiesStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndApplicationProperties(),"This is a secret message, please don't break it !");
         assertEquals(108, result.length());
     }
@@ -46,7 +46,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingParameterAndApplicationPropertiesStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndApplicationProperties(),
                 "zQj5INzIi2XrRsd+sgevBw643nGrl7NdCREheb+dcCx++BOk+NgHQ9QBVAbv9VvEkJGyoLvzpgUGBm9R6h2ujVEvFgJakxOedNuZfPZ3XOE=");
         assertEquals("This is a secret message, please don't break it !", result);
@@ -55,7 +55,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingParameterAndAutoGenerateStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
                 "This is a secret message, please don't break it !");
         assertEquals(148, result.length());
@@ -64,7 +64,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingParameterAndAutoGenerateStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
                 "B92740F33TqkR/aGtPP4/7+pZDlX3vU/XmEbw3hQ1Uuv0FH6ZmIO0HXKEALs8OjB4MDAxMDE6/x0t0x00001p#FAEE4BCCnR47qBSgJBo961ibQ2S/aKXE3HY5MThrjm7e2uzZ/4Dhd7+m9PQ5Xi");
         assertEquals("This is a secret message, please don't break it !", result);
@@ -73,7 +73,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingApplicationPropertiesAndParameterStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationPropertiesAndParameter(),"This is a secret message, please don't break it !");
         assertEquals(108, result.length());
     }
@@ -81,7 +81,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingApplicationPropertiesAndParameterStaticRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationPropertiesAndParameter(),
                 "zQj5INzIi2XrRsd+sgevBw643nGrl7NdCREheb+dcCx++BOk+NgHQ9QBVAbv9VvEkJGyoLvzpgUGBm9R6h2ujVEvFgJakxOedNuZfPZ3XOE=");
         assertEquals("This is a secret message, please don't break it !", result);
@@ -90,7 +90,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingApplicationPropertiesRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationProperties(),"This is a secret message, please don't break it !");
         assertEquals(108, result.length());
     }
@@ -98,7 +98,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingApplicationPropertiesRobustTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationProperties(),
                 "zQj5INzIi2XrRsd+sgevBw643nGrl7NdCREheb+dcCx++BOk+NgHQ9QBVAbv9VvEkJGyoLvzpgUGBm9R6h2ujVEvFgJakxOedNuZfPZ3XOE=");
         assertEquals("This is a secret message, please don't break it !", result);
@@ -107,7 +107,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingApplicationPropertiesAndAutoGenerateTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate(),"This is a secret message, please don't break it !");
         assertEquals(148, result.length());
     }
@@ -115,7 +115,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingApplicationPropertiesAndAutoGenerateTest() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate(),
                 "2362723DR0qVkaPiE7buDfxjB7f3i528IfQ8d6HbvPwB+Mw8hOj4D+PFtHRisOjB4MDAxMDE6/x0t0x00001p#45B046EFMcBRd9nDXagyVumfvARzDZOe1i3HhEQZc9YccQHLV2KGeYgoUAjcZP");
         assertEquals("This is a secret message, please don't break it !", result);
@@ -124,7 +124,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingApplicationPropertiesAndAutoGenerate2_Static_Test() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromApplicationPropertiesAndAutoGenerate(),"secret message");
         assertEquals(84, result.length());
     }
@@ -132,7 +132,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingApplicationPropertiesAndAutoGenerate2_Static_Test() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
                 "1007ACF1HyiP+w82rO31HQwRc2NNgOjB4MDAxMDE6/x0t0x00001p#77304610R49EsAxbjohtjsfASJ2r/Q");
         assertEquals("secret message", result);
@@ -141,7 +141,7 @@ class CryptographyToolkitTests {
     @Test
     public void encryptAES256CBCUsingApplicationPropertiesAndAutoGenerate3_Static_Test() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.encryptAes256CbcRobust(
+        String result = CryptographyToolkit.encryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
                 "64.877.334/0001-58");
         assertEquals(93, result.length());
@@ -150,7 +150,7 @@ class CryptographyToolkitTests {
     @Test
     public void decryptAES256CBCUsingApplicationPropertiesAndAutoGenerate3_Static_Test() {
         /* ! DO NOT CHANGE THE INFORMATION HERE ! */
-        String result = CryptographyToolkit.decryptAes256CbcRobust(
+        String result = CryptographyToolkit.decryptAes256CbcStaticRobust(
                 dataBuilder.resourceFromParametersAndAutoGenerate(),
                 "F62C2C2FT16yOR5rFEESyVomYUPtXimombw7Xekn/x0t0x00001p#6D8841E8N7cqx6diEmQZaAdBFwf62wkL6M33dZwJ");
         assertEquals("64.877.334/0001-58", result);
