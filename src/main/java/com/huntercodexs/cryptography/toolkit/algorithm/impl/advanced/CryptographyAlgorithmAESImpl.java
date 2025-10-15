@@ -14,8 +14,8 @@ import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 
-import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES;
-import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_CBC;
+import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC;
+import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -46,9 +46,9 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
     private static String encryptAesAdvanced(String dataToEncrypt, byte[] ivParameter, String secretKey) {
         try {
 
-            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES);
+            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES_ALGORITHM_TYPE_FOR_SPEC);
             AlgorithmParameterSpec param = new IvParameterSpec(ivParameter);
-            Cipher cipher = Cipher.getInstance(AES_CBC);
+            Cipher cipher = Cipher.getInstance(AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, param);
             byte[] bytes = cipher.doFinal(dataToEncrypt.getBytes(UTF_8));
             return new String(Base64.getEncoder().encode(bytes));
@@ -62,9 +62,9 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
     private static String decryptAesAdvanced(String dataToDecrypt, byte[] ivParameter, String secretKey) {
         try {
 
-            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES);
+            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES_ALGORITHM_TYPE_FOR_SPEC);
             AlgorithmParameterSpec param = new IvParameterSpec(ivParameter);
-            Cipher cipher = Cipher.getInstance(AES_CBC);
+            Cipher cipher = Cipher.getInstance(AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.DECRYPT_MODE, keySpec, param);
             byte[] bytes = Base64.getDecoder().decode(dataToDecrypt.getBytes(UTF_8));
             byte[] decValue = cipher.doFinal(bytes);

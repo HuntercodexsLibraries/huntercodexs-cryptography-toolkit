@@ -1,5 +1,6 @@
 package com.huntercodexs.cryptography.toolkit;
 
+import com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
 import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
@@ -50,12 +51,12 @@ public class CryptographyToolkit {
 
             String secretKey = getSecretFromStaticSource(contract);
 
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(SECRET_KEY_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), ITERATION_COUNT, KEY_LENGTH);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
+            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
-            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALG);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
-            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING);
+            Cipher cipher = Cipher.getInstance(AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivSpec);
 
             byte[] cipherText = cipher.doFinal(dataToEncrypt.getBytes(StandardCharsets.UTF_8));
@@ -93,12 +94,12 @@ public class CryptographyToolkit {
 
             String secretKey = getSecretFromStaticSource(contract);
 
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(SECRET_KEY_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), ITERATION_COUNT, KEY_LENGTH);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
+            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
-            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALG);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
-            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING);
+            Cipher cipher = Cipher.getInstance(AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivSpec);
 
             byte[] cipherText = new byte[encryptedData.length - iv.length];
@@ -120,9 +121,9 @@ public class CryptographyToolkit {
             String ivSource = generateRandomKey();
             String secretKey = generateRandomKey();
 
-            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES);
+            Key keySpec = new SecretKeySpec(secretKey.getBytes(), CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC);
             AlgorithmParameterSpec param = new IvParameterSpec(ivSource.getBytes());
-            Cipher cipher = Cipher.getInstance(AES_CBC);
+            Cipher cipher = Cipher.getInstance(CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, param);
             byte[] encryptedData = cipher.doFinal(dataToEncrypt.getBytes(UTF_8));
 
@@ -143,9 +144,9 @@ public class CryptographyToolkit {
             String secretKey = decipher.substring(16, 32);
             String encSource = decipher.substring(32);
 
-            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES);
+            Key keySpec = new SecretKeySpec(secretKey.getBytes(), CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC);
             AlgorithmParameterSpec param = new IvParameterSpec(ivSource.getBytes());
-            Cipher cipher = Cipher.getInstance(AES_CBC);
+            Cipher cipher = Cipher.getInstance(CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.DECRYPT_MODE, keySpec, param);
             byte[] bytes = Base64.getDecoder().decode(encSource.getBytes(UTF_8));
             byte[] decValue = cipher.doFinal(bytes);
@@ -163,9 +164,9 @@ public class CryptographyToolkit {
             String ivSource = this.processor.getIvFromSource(dataToEncrypt, false, true);
             String secretKey = this.processor.getSecretFromSource();
 
-            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES);
+            Key keySpec = new SecretKeySpec(secretKey.getBytes(), CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC);
             AlgorithmParameterSpec param = new IvParameterSpec(ivSource.getBytes());
-            Cipher cipher = Cipher.getInstance(AES_CBC);
+            Cipher cipher = Cipher.getInstance(CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, param);
             byte[] encryptedData = cipher.doFinal(dataToEncrypt.getBytes(UTF_8));
 
@@ -192,9 +193,9 @@ public class CryptographyToolkit {
                 encSource = source.substring(16);
             }
 
-            Key keySpec = new SecretKeySpec(secretKey.getBytes(), AES);
+            Key keySpec = new SecretKeySpec(secretKey.getBytes(), CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC);
             AlgorithmParameterSpec param = new IvParameterSpec(ivSource.getBytes());
-            Cipher cipher = Cipher.getInstance(AES_CBC);
+            Cipher cipher = Cipher.getInstance(CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.DECRYPT_MODE, keySpec, param);
             byte[] bytes = Base64.getDecoder().decode(encSource.getBytes(UTF_8));
             byte[] decValue = cipher.doFinal(bytes);

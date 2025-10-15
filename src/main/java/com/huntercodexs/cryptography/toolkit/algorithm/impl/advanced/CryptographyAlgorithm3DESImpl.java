@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
-import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.ENCRYPTION_DES_SCHEME;
+import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY;
 
 /**
  * 3DES (DESede)
@@ -40,8 +40,8 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
 
             byte[] arrayBytes = secretKey.getBytes(StandardCharsets.UTF_8);
             KeySpec ks = new DESedeKeySpec(arrayBytes);
-            SecretKeyFactory skf = SecretKeyFactory.getInstance(ENCRYPTION_DES_SCHEME);
-            Cipher cipher = Cipher.getInstance(ENCRYPTION_DES_SCHEME);
+            SecretKeyFactory skf = SecretKeyFactory.getInstance(TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY);
+            Cipher cipher = Cipher.getInstance(TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY);
             SecretKey key = skf.generateSecret(ks);
 
             cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -60,8 +60,8 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
 
             byte[] arrayBytes = secretKey.getBytes(StandardCharsets.UTF_8);
             KeySpec ks = new DESedeKeySpec(arrayBytes);
-            SecretKeyFactory skf = SecretKeyFactory.getInstance(ENCRYPTION_DES_SCHEME);
-            Cipher cipher = Cipher.getInstance(ENCRYPTION_DES_SCHEME);
+            SecretKeyFactory skf = SecretKeyFactory.getInstance(TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY);
+            Cipher cipher = Cipher.getInstance(TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY);
             SecretKey key = skf.generateSecret(ks);
 
             cipher.init(Cipher.DECRYPT_MODE, key);

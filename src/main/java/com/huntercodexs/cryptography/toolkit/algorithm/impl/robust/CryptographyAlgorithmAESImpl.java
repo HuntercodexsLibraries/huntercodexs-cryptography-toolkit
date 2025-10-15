@@ -1,7 +1,6 @@
 package com.huntercodexs.cryptography.toolkit.algorithm.impl.robust;
 
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
-import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import com.huntercodexs.cryptography.toolkit.contract.robust.CryptographyContractRobustAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
@@ -18,7 +17,6 @@ import java.security.spec.KeySpec;
 import java.util.Base64;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
-import static com.huntercodexs.cryptography.toolkit.contract.CryptographyContract.CryptographyIvSource.IV_FROM_AUTO_GENERATE;
 import static com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor.log;
 
 /**
@@ -52,12 +50,12 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
 
             String secretKey = this.processor.getSecretFromSourceRobust();
 
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(SECRET_KEY_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), ITERATION_COUNT, KEY_LENGTH);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
+            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
-            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALG);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
-            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING);
+            Cipher cipher = Cipher.getInstance(AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivSpec);
 
             byte[] cipherText = cipher.doFinal(dataToEncrypt.getBytes(StandardCharsets.UTF_8));
@@ -96,12 +94,12 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
 
             String secretKey = this.processor.getSecretFromSourceRobust();
 
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(SECRET_KEY_FACTORY);
-            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), ITERATION_COUNT, KEY_LENGTH);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(AES_SECRET_KEY_INSTANCE_FACTORY);
+            KeySpec spec = new PBEKeySpec(secretKey.toCharArray(), contract.getSalt().getBytes(StandardCharsets.UTF_8), AES_ITERATION_COUNT_FOR_SPEC, AES_KEY_LENGTH_FOR_SPEC);
             SecretKey tmp = factory.generateSecret(spec);
-            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALG);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM_TYPE_FOR_SPEC);
 
-            Cipher cipher = Cipher.getInstance(AES_CBC_PADDING);
+            Cipher cipher = Cipher.getInstance(AES_INSTANCE_TYPE_FOR_CIPHER);
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivSpec);
 
             byte[] cipherText = new byte[encryptedData.length - iv.length];
