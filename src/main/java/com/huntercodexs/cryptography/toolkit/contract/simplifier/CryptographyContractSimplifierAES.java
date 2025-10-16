@@ -1,16 +1,34 @@
 package com.huntercodexs.cryptography.toolkit.contract.simplifier;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
-@Data
-@RequiredArgsConstructor
 public class CryptographyContractSimplifierAES {
 
     public SecretKey cryptoSecretKey;
     public IvParameterSpec cryptoSpecIv;
 
+    public CryptographyContractSimplifierAES() {
+    }
+
+    public CryptographyContractSimplifierAES(SecretKey cryptoSecretKey, IvParameterSpec cryptoSpecIv) {
+        this.cryptoSecretKey = cryptoSecretKey;
+        this.cryptoSpecIv = cryptoSpecIv;
+    }
+
+    public SecretKey getCryptoSecretKey() {
+        return cryptoSecretKey;
+    }
+
+    public void setCryptoSecretKey(SecretKey cryptoSecretKey) {
+        this.cryptoSecretKey = cryptoSecretKey;
+    }
+
+    public IvParameterSpec getCryptoSpecIv() {
+        return cryptoSpecIv;
+    }
+
+    public void setCryptoSpecIv(IvParameterSpec cryptoSpecIv) {
+        this.cryptoSpecIv = cryptoSpecIv;
+    }
 }

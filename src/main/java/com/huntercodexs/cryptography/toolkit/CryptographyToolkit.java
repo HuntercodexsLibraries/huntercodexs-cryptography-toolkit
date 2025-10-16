@@ -4,9 +4,6 @@ import com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants;
 import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
-import lombok.Generated;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -20,6 +17,7 @@ import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
 import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource.IV_FROM_AUTO_GENERATE;
@@ -28,8 +26,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class CryptographyToolkit {
 
-    @Generated
-    private static final Logger log = LoggerFactory.getLogger(CryptographyToolkit.class);
+    private static final Logger log = Logger.getLogger(CryptographyToolkit.class.getName());
 
     CryptographyContract contract;
     CryptographyToolkitProcessor processor;
@@ -75,7 +72,7 @@ public class CryptographyToolkit {
             return Base64.getEncoder().encodeToString(encryptedData);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.encryptAes256CbcRobust: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkit.encryptAes256CbcRobust: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -117,7 +114,7 @@ public class CryptographyToolkit {
             return new String(decryptedText, StandardCharsets.UTF_8);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.decryptAes256CbcRobust: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkit.decryptAes256CbcRobust: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -138,7 +135,7 @@ public class CryptographyToolkit {
             return dataGeneratorForEncryptAutomatic(ivSource, secretKey, encryptedData);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.encryptAes256CbcAutomatic: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkit.encryptAes256CbcAutomatic: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -161,7 +158,7 @@ public class CryptographyToolkit {
             return new String(decValue);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.decryptAes256CbcAutomatic: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkit.decryptAes256CbcAutomatic: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -185,7 +182,7 @@ public class CryptographyToolkit {
             return new String(Base64.getEncoder().encode(encryptedData));
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.encryptAes256CbcDynamicBasic: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkit.encryptAes256CbcDynamicBasic: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -210,7 +207,7 @@ public class CryptographyToolkit {
             return new String(decValue);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyToolkit.decryptAes256CbcDynamicBasic: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkit.decryptAes256CbcDynamicBasic: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

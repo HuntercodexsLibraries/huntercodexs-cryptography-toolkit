@@ -15,15 +15,17 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
 import static com.huntercodexs.cryptography.toolkit.enumerator.CryptographyIvSource.IV_FROM_AUTO_GENERATE;
-import static com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor.log;
 
 /**
  * AES (Symmetric)
  * */
 public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
+
+    private static final Logger log = Logger.getLogger(CryptographyAlgorithmAESImpl.class.getName());
 
     CryptographyToolkitProcessor processor;
 
@@ -75,7 +77,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return Base64.getEncoder().encodeToString(encryptedData);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithmAESImpl.encryptAesRobust: {}", e.getMessage());
+            log.severe("Fail in CryptographyAlgorithmAESImpl.encryptAesRobust: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -118,7 +120,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(decryptedText, StandardCharsets.UTF_8);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithmAESImpl.decryptAesRobust: {}", e.getMessage());
+            log.severe("Fail in CryptographyAlgorithmAESImpl.decryptAesRobust: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

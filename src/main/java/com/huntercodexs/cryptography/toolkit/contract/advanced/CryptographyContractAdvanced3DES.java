@@ -1,12 +1,21 @@
 package com.huntercodexs.cryptography.toolkit.contract.advanced;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
-@Data
-@RequiredArgsConstructor
 public class CryptographyContractAdvanced3DES {
 
     private String secretKey;
 
+    public CryptographyContractAdvanced3DES() {
+    }
+
+    public CryptographyContractAdvanced3DES(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
 }

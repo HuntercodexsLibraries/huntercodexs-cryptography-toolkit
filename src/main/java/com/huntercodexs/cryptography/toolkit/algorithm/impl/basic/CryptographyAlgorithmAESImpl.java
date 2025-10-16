@@ -3,9 +3,6 @@ package com.huntercodexs.cryptography.toolkit.algorithm.impl.basic;
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
 import com.huntercodexs.cryptography.toolkit.contract.basic.CryptographyContractBasicAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
-import lombok.Generated;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -13,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC;
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER;
@@ -23,8 +21,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * */
 public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
 
-    @Generated
-    public static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithmAESImpl.class);
+    private static final Logger log = Logger.getLogger(CryptographyAlgorithmAESImpl.class.getName());
 
     @Override
     public String encrypt(Object contract, String dataToEncrypt) {
@@ -47,7 +44,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(Base64.getEncoder().encode(bytes));
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithmAESImpl.encryptAes256CbcBasic: {}", e.getMessage());
+            log.severe("Fail in CryptographyAlgorithmAESImpl.encryptAes256CbcBasic: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -64,7 +61,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(decValue);
 
         } catch (Exception e) {
-            log.error("Fail in CryptographyAlgorithmAESImpl.decryptAes256CbcBasic: {}", e.getMessage());
+            log.severe("Fail in CryptographyAlgorithmAESImpl.decryptAes256CbcBasic: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

@@ -1,10 +1,8 @@
 package com.huntercodexs.cryptography.toolkit.resource;
 
+import com.huntercodexs.cryptography.toolkit.algorithm.impl.advanced.CryptographyAlgorithmAESImpl;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
 import com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitProcessor;
-import lombok.Generated;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -15,13 +13,13 @@ import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.*;
 
 public abstract class CryptographyUtility {
 
-    @Generated
-    private static final Logger log = LoggerFactory.getLogger(CryptographyUtility.class);
+    private static final Logger log = Logger.getLogger(CryptographyUtility.class.getName());
 
     public static IvParameterSpec generateIvUtility() {
         byte[] iv = new byte[16]; // 16 bytes for AES
@@ -73,7 +71,7 @@ public abstract class CryptographyUtility {
             prop.load(CryptographyToolkitProcessor.class.getClassLoader().getResourceAsStream("application.properties"));
             return prop.getProperty("cryptography-toolkit.secret-key.parameter");
         } catch (IOException e) {
-            log.error("Fail in CryptographyToolkitProcessor.getSecretKeyFromStaticProperties: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkitProcessor.getSecretKeyFromStaticProperties: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -84,7 +82,7 @@ public abstract class CryptographyUtility {
             prop.load(CryptographyToolkitProcessor.class.getClassLoader().getResourceAsStream("application.properties"));
             return prop.getProperty("cryptography-toolkit.iv.parameter");
         } catch (IOException e) {
-            log.error("Fail in CryptographyToolkitProcessor.getIvFromStaticProperties: {}", e.getMessage());
+            log.severe("Fail in CryptographyToolkitProcessor.getIvFromStaticProperties: " + e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
