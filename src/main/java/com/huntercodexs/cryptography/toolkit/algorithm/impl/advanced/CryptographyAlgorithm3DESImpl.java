@@ -3,6 +3,9 @@ package com.huntercodexs.cryptography.toolkit.algorithm.impl.advanced;
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
 import com.huntercodexs.cryptography.toolkit.contract.advanced.CryptographyContractAdvanced3DES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
+import lombok.Generated;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -11,7 +14,6 @@ import javax.crypto.spec.DESedeKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.spec.KeySpec;
 import java.util.Base64;
-import java.util.logging.Logger;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.TRIPLE_DES_SECRET_KEY_INSTANCE_FACTORY;
 
@@ -20,7 +22,8 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
  * */
 public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Object> {
 
-    private static final Logger log = Logger.getLogger(CryptographyAlgorithm3DESImpl.class.getName());
+    @Generated
+    private static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithm3DESImpl.class);
 
     @Override
     public String encrypt(Object contract, String dataToEncrypt) {
@@ -47,7 +50,7 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
             return new String(Base64.getEncoder().encode(encryptedText));
 
         } catch (Exception e) {
-            log.severe("Fail in CryptographyAlgorithm3DESImpl.encryptTripleDesAdvanced: " + e.getMessage());
+            log.error("Fail in CryptographyAlgorithm3DESImpl.encryptTripleDesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -67,7 +70,7 @@ public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Obje
             return new String(plainText);
 
         } catch (Exception e) {
-            log.severe("Fail in CryptographyAlgorithm3DESImpl.decryptTripleDesAdvanced: " + e.getMessage());
+            log.error("Fail in CryptographyAlgorithm3DESImpl.decryptTripleDesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }

@@ -3,6 +3,9 @@ package com.huntercodexs.cryptography.toolkit.process;
 import com.huntercodexs.cryptography.toolkit.contract.CryptographyContract;
 import com.huntercodexs.cryptography.toolkit.contract.robust.CryptographyContractRobustAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
+import lombok.Generated;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Base64;
 import java.util.UUID;
@@ -15,6 +18,9 @@ import static com.huntercodexs.cryptography.toolkit.resource.CryptographyUtility
 import static com.huntercodexs.cryptography.toolkit.resource.CryptographyUtility.getSecretKeyFromProperties;
 
 public class CryptographyToolkitProcessor {
+
+    @Generated
+    public static final Logger log = LoggerFactory.getLogger(CryptographyToolkitProcessor.class);
 
     CryptographyContract contract;
     CryptographyContractRobustAES contractRobustAES;

@@ -3,6 +3,9 @@ package com.huntercodexs.cryptography.toolkit.algorithm.impl.advanced;
 import com.huntercodexs.cryptography.toolkit.algorithm.CryptographyAlgorithm;
 import com.huntercodexs.cryptography.toolkit.contract.advanced.CryptographyContractAdvancedAES;
 import com.huntercodexs.cryptography.toolkit.exception.CryptographyException;
+import lombok.Generated;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -10,7 +13,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
-import java.util.logging.Logger;
 
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_ALGORITHM_TYPE_FOR_SPEC;
 import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConstants.AES_INSTANCE_TYPE_FOR_CIPHER;
@@ -21,7 +23,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * */
 public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
 
-    private static final Logger log = Logger.getLogger(CryptographyAlgorithmAESImpl.class.getName());
+    @Generated
+    private static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithmAESImpl.class);
 
     @Override
     public String encrypt(Object contract, String dataToEncrypt) {
@@ -51,7 +54,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(Base64.getEncoder().encode(bytes));
 
         } catch (Exception e) {
-            log.severe("Fail in CryptographyAlgorithmAESImpl.encryptAesAdvanced: " + e.getMessage());
+            log.error("Fail in CryptographyAlgorithmAESImpl.encryptAesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
@@ -68,7 +71,7 @@ public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Objec
             return new String(decValue);
 
         } catch (Exception e) {
-            log.severe("Fail in CryptographyAlgorithmAESImpl.decryptAesAdvanced: " + e.getMessage());
+            log.error("Fail in CryptographyAlgorithmAESImpl.decryptAesAdvanced: {}", e.getMessage());
             throw new CryptographyException(e.getMessage());
         }
     }
