@@ -14,27 +14,21 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<CryptographyContractSimplifierAES> {
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
+    public String encrypt(CryptographyContractSimplifierAES contract, String dataToEncrypt) {
         try {
-            return encryptAesSimplifier(
-                    dataToEncrypt,
-                    ((CryptographyContractSimplifierAES) contract).getCryptoSecretKey(),
-                    ((CryptographyContractSimplifierAES) contract).getCryptoSpecIv());
+            return encryptAesSimplifier(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
+    public String decrypt(CryptographyContractSimplifierAES contract, String dataToDecrypt) {
         try {
-            return decryptAesSimplifier(
-                    dataToDecrypt,
-                    ((CryptographyContractSimplifierAES) contract).getCryptoSecretKey(),
-                    ((CryptographyContractSimplifierAES) contract).getCryptoSpecIv());
+            return decryptAesSimplifier(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }

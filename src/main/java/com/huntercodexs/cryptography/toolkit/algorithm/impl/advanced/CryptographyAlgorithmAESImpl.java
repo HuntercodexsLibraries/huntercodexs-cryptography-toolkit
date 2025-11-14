@@ -21,26 +21,20 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<CryptographyContractAdvancedAES> {
 
     @Generated
     private static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithmAESImpl.class);
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
+    public String encrypt(CryptographyContractAdvancedAES contract, String dataToEncrypt) {
 
-        return encryptAesAdvanced(
-                dataToEncrypt,
-                ((CryptographyContractAdvancedAES) contract).getIv().getBytes(),
-                ((CryptographyContractAdvancedAES) contract).getSecretKey());
+        return encryptAesAdvanced(dataToEncrypt, (contract).getIv().getBytes(), (contract).getSecretKey());
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
-        return decryptAesAdvanced(
-                dataToDecrypt,
-                ((CryptographyContractAdvancedAES) contract).getIv().getBytes(),
-                ((CryptographyContractAdvancedAES) contract).getSecretKey());
+    public String decrypt(CryptographyContractAdvancedAES contract, String dataToDecrypt) {
+        return decryptAesAdvanced(dataToDecrypt, (contract).getIv().getBytes(), (contract).getSecretKey());
     }
 
     private static String encryptAesAdvanced(String dataToEncrypt, byte[] ivParameter, String secretKey) {

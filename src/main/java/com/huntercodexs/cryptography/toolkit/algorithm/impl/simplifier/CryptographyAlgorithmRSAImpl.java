@@ -14,21 +14,21 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
 /** 
  * RSA (Asymmetric) 
  * */
-public class CryptographyAlgorithmRSAImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithmRSAImpl implements CryptographyAlgorithm<CryptographyContractSimplifierRSA> {
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
+    public String encrypt(CryptographyContractSimplifierRSA contract, String dataToEncrypt) {
         try {
-            return encryptRsaSimplifier(dataToEncrypt, ((CryptographyContractSimplifierRSA) contract).getPublicKey());
+            return encryptRsaSimplifier(dataToEncrypt, contract.getPublicKey());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
+    public String decrypt(CryptographyContractSimplifierRSA contract, String dataToDecrypt) {
         try {
-            return decryptRsaSimplifier(dataToDecrypt, ((CryptographyContractSimplifierRSA) contract).getPrivateKey());
+            return decryptRsaSimplifier(dataToDecrypt, contract.getPrivateKey());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }

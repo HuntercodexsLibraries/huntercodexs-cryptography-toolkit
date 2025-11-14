@@ -14,27 +14,21 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
 /**
  * DES (Symmetric)
  * */
-public class CryptographyAlgorithmDESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithmDESImpl implements CryptographyAlgorithm<CryptographyContractSimplifierDES> {
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
+    public String encrypt(CryptographyContractSimplifierDES contract, String dataToEncrypt) {
         try {
-            return encryptDesSimplifier(
-                    dataToEncrypt,
-                    ((CryptographyContractSimplifierDES) contract).getCryptoSecretKey(),
-                    ((CryptographyContractSimplifierDES) contract).getCryptoSpecIv());
+            return encryptDesSimplifier(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
+    public String decrypt(CryptographyContractSimplifierDES contract, String dataToDecrypt) {
         try {
-            return decryptDesSimplifier(
-                    dataToDecrypt,
-                    ((CryptographyContractSimplifierDES) contract).getCryptoSecretKey(),
-                    ((CryptographyContractSimplifierDES) contract).getCryptoSpecIv());
+            return decryptDesSimplifier(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }

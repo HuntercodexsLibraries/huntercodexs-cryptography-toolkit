@@ -20,19 +20,19 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
 /**
  * 3DES (DESede)
  * */
-public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<CryptographyContractAdvanced3DES> {
 
     @Generated
     private static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithm3DESImpl.class);
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
-        return encryptTripleDesAdvanced(dataToEncrypt, ((CryptographyContractAdvanced3DES) contract).getSecretKey());
+    public String encrypt(CryptographyContractAdvanced3DES contract, String dataToEncrypt) {
+        return encryptTripleDesAdvanced(dataToEncrypt, contract.getSecretKey());
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
-        return decryptTripleDesAdvanced(dataToDecrypt, ((CryptographyContractAdvanced3DES) contract).getSecretKey());
+    public String decrypt(CryptographyContractAdvanced3DES contract, String dataToDecrypt) {
+        return decryptTripleDesAdvanced(dataToDecrypt, contract.getSecretKey());
     }
 
     private String encryptTripleDesAdvanced(String dataToEncrypt, String secretKey) {

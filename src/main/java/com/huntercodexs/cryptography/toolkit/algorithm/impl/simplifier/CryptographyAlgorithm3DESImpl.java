@@ -14,27 +14,21 @@ import static com.huntercodexs.cryptography.toolkit.constants.CryptographyConsta
 /**
  * 3DES (DESede)
  * */
-public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithm3DESImpl implements CryptographyAlgorithm<CryptographyContractSimplifier3DES> {
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
+    public String encrypt(CryptographyContractSimplifier3DES contract, String dataToEncrypt) {
         try {
-            return encryptTripleDesSimplifier(
-                    dataToEncrypt,
-                    ((CryptographyContractSimplifier3DES) contract).getCryptoSecretKey(),
-                    ((CryptographyContractSimplifier3DES) contract).getCryptoSpecIv());
+            return encryptTripleDesSimplifier(dataToEncrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
+    public String decrypt(CryptographyContractSimplifier3DES contract, String dataToDecrypt) {
         try {
-            return decryptTripleDesSimplifier(
-                    dataToDecrypt,
-                    ((CryptographyContractSimplifier3DES) contract).getCryptoSecretKey(),
-                    ((CryptographyContractSimplifier3DES) contract).getCryptoSpecIv());
+            return decryptTripleDesSimplifier(dataToDecrypt, contract.getCryptoSecretKey(), contract.getCryptoSpecIv());
         } catch (Exception e) {
             throw new CryptographyException(e.getMessage());
         }

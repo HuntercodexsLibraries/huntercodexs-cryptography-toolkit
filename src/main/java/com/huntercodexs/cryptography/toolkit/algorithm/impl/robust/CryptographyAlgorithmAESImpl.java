@@ -23,20 +23,20 @@ import static com.huntercodexs.cryptography.toolkit.process.CryptographyToolkitP
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<CryptographyContractRobustAES> {
 
     CryptographyToolkitProcessor processor;
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
-        this.processor = new CryptographyToolkitProcessor((CryptographyContractRobustAES) contract);
-        return encryptAesRobust(dataToEncrypt, (CryptographyContractRobustAES) contract);
+    public String encrypt(CryptographyContractRobustAES contract, String dataToEncrypt) {
+        this.processor = new CryptographyToolkitProcessor(contract);
+        return encryptAesRobust(dataToEncrypt, contract);
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
-        this.processor = new CryptographyToolkitProcessor((CryptographyContractRobustAES) contract);
-        return decryptAesRobust(dataToDecrypt, (CryptographyContractRobustAES) contract);
+    public String decrypt(CryptographyContractRobustAES contract, String dataToDecrypt) {
+        this.processor = new CryptographyToolkitProcessor(contract);
+        return decryptAesRobust(dataToDecrypt, contract);
     }
 
     private String encryptAesRobust(String dataToEncrypt, CryptographyContractRobustAES contract) {

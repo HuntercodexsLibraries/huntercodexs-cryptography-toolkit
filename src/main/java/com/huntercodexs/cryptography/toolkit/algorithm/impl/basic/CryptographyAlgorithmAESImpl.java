@@ -21,19 +21,19 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 /**
  * AES (Symmetric)
  * */
-public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<Object> {
+public class CryptographyAlgorithmAESImpl implements CryptographyAlgorithm<CryptographyContractBasicAES> {
 
     @Generated
     public static final Logger log = LoggerFactory.getLogger(CryptographyAlgorithmAESImpl.class);
 
     @Override
-    public String encrypt(Object contract, String dataToEncrypt) {
-        return encryptAes256CbcBasic(dataToEncrypt, (CryptographyContractBasicAES) contract);
+    public String encrypt(CryptographyContractBasicAES contract, String dataToEncrypt) {
+        return encryptAes256CbcBasic(dataToEncrypt, contract);
     }
 
     @Override
-    public String decrypt(Object contract, String dataToDecrypt) {
-        return decryptAes256CbcBasic(dataToDecrypt, (CryptographyContractBasicAES) contract);
+    public String decrypt(CryptographyContractBasicAES contract, String dataToDecrypt) {
+        return decryptAes256CbcBasic(dataToDecrypt, contract);
     }
 
     private String encryptAes256CbcBasic(String dataToEncrypt, CryptographyContractBasicAES contract) {
